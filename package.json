@@ -1,0 +1,13 @@
+{
+  "name": "notes-ai",
+  "private": true,
+  "scripts": {
+    "install:all": "npm install && npm install --prefix client && python3 -m venv server/.venv && server/.venv/bin/pip install -r server/requirements.txt",
+    "dev": "concurrently -n api,client -c green,blue \"npm run dev:api\" \"npm run dev --prefix client\"",
+    "dev:api": "cd server && .venv/bin/uvicorn app.main:app --reload --port 5050",
+    "test": "cd server && .venv/bin/pytest"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
+}
